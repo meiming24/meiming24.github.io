@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Punz Store</title>
+    <link rel="stylesheet" href="./assets/styles/style.css">
+</head>
+<body style="background-image: url(./assets/images/register-background.png); background-repeat: no-repeat; background-size: 1550px; ">
+
+    <script src="https://kit.fontawesome.com/8d89ff3497.js" crossorigin="anonymous"></script>
+
+    <div class="container">
+    
+        <div class="nav-bar">
+    
+            <div class="logo">
+                <img src="./assets/images/logo.png" alt="Logo Image" width="125px" onclick="menu-toogle()">
+            </div>
+    
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./products.html">Products</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./contact.html">Contact</a></li>
+                    <li><a href="./login.html">Account</a></li>
+                </ul>
+            </nav>
+    
+            <a href="./cart.html"><img class="cart" src="./assets/images/cart.png" alt="Cart Icon" width="30px" height="30px"></a>
+            <img src="./assets/images/menu.png" class="menu-icon" alt="" onclick="menutoogle()">
+    
+        </div>
+    
+    </div>
+    
+    <div class="register-container">
+        <div class="register">
+            <h2>Login Account</h2>
+            <form id="form" class="form">
+                <div class="form-control">
+                    <label for="username">Username or Email</label>
+                    <input type="text" placeholder="Username or Email" id="username" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+        
+                <div class="form-control">
+                    <label for="username">Password</label>
+                    <input type="password" placeholder="Password" id="password" />
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <small>Error message</small>
+                </div>
+                
+                <button>Submit</button>
+            </form>
+            <a href="./register.html">Don't have an account ?</a>
+        </div>
+    </div>
+    
+
+    <div class="footer">
+        <div class="sub-container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Dowload Our App</h3>
+                    <p>Available for Android and IOS users</p>
+                </div>
+
+                <div class="footer-col-2">
+                    <img src="./assets/images/logo-invert.png" alt="">
+                    <p>Our Purpose Is To Substainably Make The Pleasure And Comfort of Streetwear Accessible To The Many</p>
+                </div>
+
+                <div class="footer-col-3">
+                    <h3>Useful Link</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Return Policy</li>
+                        <li>Join Affiliate</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-4">
+                    <h3>Follow Us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Instagram</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!---Toogle Menu-->>
+    <script>
+        var menuItems = document.getElementById("MenuItems");
+
+        menuItems.style.maxHeight = "0px";
+
+        function menutoogle() {
+            if (menuItems.style.maxHeight == "0px") {
+                menuItems.style.maxHeight = "200px";
+            }
+            else {
+                menuItems.style.maxHeight = "0px";
+            }
+        }
+
+        const form = document.getElementById('form');
+        const username = document.getElementById('username');
+        const password = document.getElementById('password');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+
+            checkInputs();
+        });
+
+        function checkInputs() {
+            // trim to remove the whitespaces
+            const usernameValue = username.value.trim();
+            const passwordValue = password.value.trim();
+
+            if (usernameValue === '') {
+                setErrorFor(username, 'Username cannot be blank');
+            } else {
+                setSuccessFor(username);
+            }
+
+            if (passwordValue === '') {
+                setErrorFor(password, 'Password cannot be blank');
+            } else {
+                setSuccessFor(password);
+            }
+
+        }
+
+        function setErrorFor(input, message) {
+            const formControl = input.parentElement;
+            const small = formControl.querySelector('small');
+            formControl.className = 'form-control error';
+            small.innerText = message;
+        }
+
+        function setSuccessFor(input) {
+            const formControl = input.parentElement;
+            formControl.className = 'form-control success';
+        }
+        
+    </script>
+
+</body>
+</html> 
