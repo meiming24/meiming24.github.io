@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.container > * {
+    padding: 0px;
+    margin: 0PX;
+    box-sizing: border-box;
+}
+
+.logo {
+    flex: 15%;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.logo > img {
+    width: 45px;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: flex-start;
+    flex: 80%;
+}
+

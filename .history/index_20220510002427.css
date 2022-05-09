@@ -162,3 +162,37 @@ footer #clock {
 }
 
 
+.content .item {
+    flex: 40%;
+   border: 1px solid rgba(97, 88, 88,0.25)  ;
+   margin: 8px;
+   padding: 12px;
+}
+li input {
+    width: 100px;
+}
+}
+@media (max-width: 660px) {
+.content .item {
+    flex: 80%;
+   border: 1px solid rgba(97, 88, 88,0.25)  ;
+   margin: 8px;
+   padding: 12px;
+}
+li input {
+    width: 60px;
+    margin-left: 0;
+}
+li button {
+    display: none;
+}
+li img {
+    display: none;
+}
+li {
+    font-size: 13px;
+}
+.form-cover {
+    width: 95%;
+}
+}

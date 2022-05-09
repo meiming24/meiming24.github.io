@@ -103,62 +103,21 @@ body {
 .content img {
     height: 40%;
     width: 80%;
-    border-radius: 5px;
-    padding-top: 20px;
-    
 }
 .content .item {
     text-align: center;
     flex: 28%;
-    border: 1px solid rgba(97, 88, 88, 0.25);
-    margin: 8px;
-    padding: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
-    transition: all 1s ease-in-out;
+   border: 1px solid rgba(97, 88, 88,0.25)  ;
+   margin: 8px;
+   padding: 5px;
+   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+   border-radius: 12px;
+   transition: all 1s ease-in-out;
 }
-
 .content .price {
     color: red;
     font-weight: 900;
 }
-
 .content .item:hover {
-    transform: scale(1.01);
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
-
-.about {
-    flex: 100%;
-    text-align: center;
-    margin: 40px 0px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-.about i {
-    font-size: 36px;
-    font-weight: bold;
-}
-.about p {
-    font-weight: 5  00;
-}
-.about b {
-    font-size: 27px;
-
-}
-
-footer {
-    flex: 100%;
-    height: 10vh;
-    background-color: black;
-}
-footer #clock {
-    color: white;
-    font-size: 25px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    text-align: end;
-    line-height: 62px;
-    padding-right: 26px;
-    margin-top: 10px;
-}
-
-
