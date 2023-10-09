@@ -1,437 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kênh tin tức giải trí - Xã hội - Kenh14.vn</title>
-    <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-    <link rel="stylesheet" href="./index.css">
-    <script src="https://kit.fontawesome.com/8d89ff3497.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
+  <link rel="stylesheet" href="./index.css">
+  <title>Default</title>
 </head>
+
 <body>
-    <div class="main-wrapper">
-
-        <!-- Top-bar code -->
-        <div class="top-bar">
-            <ul>
-                <li><a href="https://kenh14.vn/sport/sea-games-31.chn">SEA GAME 31</a></li>
-                <li><a href="https://kenh14.vn/nhom-chu-de/emagazine.chn">EMAGAZINE</a></li>
-                <li><a href="https://podcast.kenh14.vn/">PODCAST</a></li>
-                <li></li>
-            </ul>
-        </div>
-
-        <!-- Search-bar code -->
-        <div class="search-bar">
-            <input type="text" placeholder="Tìm kiếm...">
-            <a href="">
-                <svg width="12" height="12" viewBox="0 0 12 12" style="user-select: auto;">
-                    <path d="M12.000,10.909 C12.000,11.999 10.909,11.999 10.909,11.999 L7.788,8.879 C6.979,9.467 5.986,9.818 4.909,9.818 C2.198,9.818 -0.000,7.620 -0.000,4.909 C-0.000,2.197 2.198,-0.000 4.909,-0.000 C7.620,-0.000 9.818,2.197 9.818,4.909 C9.818,5.986 9.467,6.978 8.879,7.788 L12.000,10.909 ZM4.909,1.091 C2.800,1.091 1.091,2.800 1.091,4.909 C1.091,7.017 2.800,8.727 4.909,8.727 C7.017,8.727 8.727,7.017 8.727,4.909 C8.727,2.800 7.017,1.091 4.909,1.091 Z" fill="#fff" style="user-select: auto;"></path>
-                </svg>
-            </a>
-        </div>
-
-        <!-- Header -->
-        <div class="header">
-            <a href="https://kenh14.vn/" class="logo"></a>
-
-            <div class="trending-topic">
-                <img src="./images/header/trending-icon.png">
-                
-                <a href="https://kenh14.vn/sea-games-31.html">#SEA Games 31</a>
-                <a href="https://kenh14.vn/lum-xum-giua-dong-nhi-va-fan.html">#Lùm xùm giữa Đông Nhi và fan</a> 
-            </div>
-        </div>
-
-        <!-- Navigation bar  -->
-        <div class="nav-bar">
-            <ul>
-                <li><a href="https://kenh14.vn/" class="menu-icon"><img src="./images/header/home-icon.png" alt=""></a></li>
-                <li><a href="https://kenh14.vn/star.chn">Star</a></li>
-                <li><a href="https://kenh14.vn/tv-show.chn">TV Show</a></li>
-                <li><a href="https://kenh14.vn/cine.chn">Ciné</a></li>
-                <li><a href="https://kenh14.vn/musik.chn">Musik</a></li>
-                <li><a href="https://kenh14.vn/beauty-fashion.chn">Beauty & Fashion</a></li>
-                <li><a href="https://kenh14.vn/xem-mua-luon.chn">Xem Mua Luôn</a></li>
-                <li><a href="https://kenh14.vn/doi-song.chn">Đời sống</a></li>
-                <li><a href="https://kenh14.vn/money-z.chn">Money - Z</a></li>
-                <li><a href="https://kenh14.vn/an-quay-di.chn">Ăn - Quẩy - Đi</a></li>
-                <li><a href="https://kenh14.vn/xa-hoi.chn">Xã hội</a></li>
-                <li><a href="https://kenh14.vn/the-gioi.chn">Thế giới</a></li>
-                <li><a href="https://kenh14.vn/sport.chn">Sport</a></li>
-                <li><a href="https://kenh14.vn/hoc-duong.chn">Học đường</a></li>
-                <li><a href="http://video.kenh14.vn/">Video</a></li>
-                <li><a href="" id="more-icon" class="more-icon" onmouseout="moreOut()" onmouseover="moreOver()"><img id="more-icon-img" src="./images/header/more-icon.png" alt=""></a></li>
-            </ul>
-        </div>
-
-        <div id="extend-menu" class="extend-menu">
-            <ul class="other-categories" >
-                <li>
-                    <h4>
-                        <a href="https://kenh14.vn/doi-song.chn">Đời sống</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Nhân vật</a>
-                        </li>
-                        <li>
-                            <a href="">Xem-Ăn-Chơi</a>
-                        </li>
-                        <li>
-                            <a href="">Trạm yêu</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h4>
-                        <a href="">Xem Mua Luôn</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Thời trang</a>
-                        </li>
-                        <li>
-                            <a href="">Đẹp</a>
-                        </li>
-                        <li>
-                            <a href="">Home & Decor</a>
-                        </li>
-                        <li>
-                            <a href="">Shopping Guide</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h4>
-                        <a href="">Sport</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Bóng đá</a>
-                        </li>
-                        <li>
-                            <a href="">Hậu Trường</a>
-                        </li>
-                        <li>
-                            <a href="">Thể Thao Khác</a>
-                        </li>
-                        <li>
-                            <a href="">Video</a>
-                        </li>
-                        <li>
-                            <a href="">Ngoại hạng Anh</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h4>
-                        <a href="">Musik</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Âu-Mỹ</a>
-                        </li>
-                        <li>
-                            <a href="">Châu Á</a>
-                        </li>
-                        <li>
-                            <a href="">Việt Nam</a>
-                        </li>
-                        <li>
-                            <a href="">Edm</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h4>
-                        <a href="">Ciné</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Mọt Phim</a>
-                        </li>
-                        <li>
-                            <a href="">Phim Việt Nam</a>
-                        </li>
-                        <li>
-                            <a href="">Phim Âu-Mỹ</a>
-                        </li>
-                        <li>
-                            <a href="">Phim Châu Á</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h4>
-                        <a href="">Tek-Life</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Metaverse</a>
-                        </li>
-                        <li>
-                            <a href="">How-To</a>
-                        </li>
-                        <li>
-                            <a href="">Wow</a>
-                        </li>
-                        <li>
-                            <a href="">2-Mail</a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-
-            <ul class="other-categories" style="padding-bottom: 40px; border-bottom: 1px solid #eaeaea;">
-                <li>
-                    <h4>
-                        <a href="">Star</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Sao Việt</a>
-                        </li>
-                        <li>
-                            <a href="">Paparazzi</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h4>
-                        <a href="">Xã Hội</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Pháp Luật</a>
-                        </li>
-                        <li>
-                            <a href="">Nóng Trên Mạng</a>
-                        </li>
-                        <li>
-                            <a href="">Sống Xanh</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h4>
-                        <a href="">Học Đường</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Người Việt Trẻ</a>
-                        </li>
-                        <li>
-                            <a href="">Du Học</a>
-                        </li>
-                        <li>
-                            <a href="">Bản Tin 46'</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h4>
-                        <a href="">Thế Giới</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Chùm Ảnh</a>
-                        </li>
-                        <li>
-                            <a href="">Khám Phá</a>
-                        </li>
-                        <li>
-                            <a href="">Lạ & Cool</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h4>
-                        <a href="">Esport</a>
-                    </h4>
-                    <ul class="related-topics">
-                        <li>
-                            <a href="">Cao thủ</a>
-                        </li>
-                        <li>
-                            <a href="">Đấu Trường</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <h4 style="margin-bottom: 10px;">
-                        <a href="">TV Show</a>
-                    </h4>
-                    <h4>
-                        <a href="">Sức khỏe</a>
-                    </h4>
-                </li>
-
-            </ul>
-            <div class="topic-wrapper">
-                <div class="topic-label">
-                    Nhóm chủ đề 
-                </div>
-                <!-- <ul>
-                    <li>
-                        <a href="">
-                            <img src="">
-                            <span>Quizz</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="">
-                            <img src="">
-                            <span>eMagazine</span>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="">
-                            <img src="">
-                            <span>Đọc Chậm</span>
-                        </a>
-                    </li>
-                </ul> -->
-            </div>
-
-            <div class="contact">
-
-            </div>
-        </div>
-
-        <!-- Landing gif -->
-        <div class="landing">
-            <a href="https://owarino-seraph.jp/">   
-                <img src="./images/header/landing-advertisement.gif" loading="lazy" width="1000px">
-            </a>
-        </div>
-
-        <!-- Body-->
-        <div class="body-container">
-            <div class="main-body">
-                <div class="main-body-focus">
-                    <div class="main-body-focus-trending">
-                        <div class="main-trending">
-                            <a href="https://kenh14.vn/anh-nha-tho-lon-ha-noi-hoan-thanh-lop-ao-cuoi-cung-nguoi-dan-tram-tro-truoc-ve-dep-ven-nguyen-20220518173121398.chn">
-                                <img src="./images/body/main-trending.png">
-                            </a>
-        
-                            <h2>
-                                <a href="https://kenh14.vn/anh-nha-tho-lon-ha-noi-hoan-thanh-lop-ao-cuoi-cung-nguoi-dan-tram-tro-truoc-ve-dep-ven-nguyen-20220518173121398.chn">
-                                    Ảnh: Nhà thờ Lớn Hà Nội hoàn thành "lớp áo" cuối cùng, người dân trầm trồ trước vẻ đẹp vẹn nguyên
-                                </a>
-                            </h2>
-        
-                            <p>
-                                Sau khi Nhà thờ Lớn Hà Nội hoàn thành lớp sơn cuối cùng, nhiều người dân tranh thủ đến đây để chụp ảnh, đa số đều ngỡ ngàng vì lớp sơn mới nhưng rất cổ kính, rêu phong.
-                            </p>
-                        </div>
-        
-                        <div class="sub-trending">
-                            <a href="https://kenh14.vn/nguoi-dep-do-nhat-ha-nhieu-nguoi-noi-toi-ham-danh-hieu-nhung-toi-thay-ai-cung-nen-co-tham-vong-20220518122011422.chn">
-                                <img src="./images/body/sub-trending.png">
-                            </a>
-    
-                            <h2>
-                                <a href="https://kenh14.vn/nguoi-dep-do-nhat-ha-nhieu-nguoi-noi-toi-ham-danh-hieu-nhung-toi-thay-ai-cung-nen-co-tham-vong-20220518122011422.chn">
-                                    Người đẹp Đỗ Nhật Hà: "Nhiều người nói tôi ham danh hiệu nhưng tôi thấy ai cũng nên có tham vọng"
-                                </a>
-                            </h2>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="side-advertistment">
-                    <img src="./images/body/side-advertistment.png">
-                </div>
-        
-                <!--Slider-->
-                <div class="slider">
-                    <ul id="slider-list" onmouseover="viewBackwardBtn()" onmouseout="hideBackwardBtn()">
-                        <li>
-                            <a
-                                href="https://kenh14.vn/cdv-bong-chuyen-thai-lan-doi-btc-kiem-tra-gioi-tinh-cua-bich-tuyen-20220519001004244.chn">
-                                <img src="./images/body/article-1.png">
-                                <h2>CĐV bóng chuyền Thái Lan đòi BTC kiểm tra giới tính của Bích Tuyền</h2>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a
-                                href="https://kenh14.vn/vu-cha-om-con-gai-nhay-cau-cua-dai-tu-tu-tim-thay-thi-the-chau-be-20220519073748306.chn">
-                                <img src="./images/body/article-2.png">
-                                <h2>Vụ cha ôm con gái nhảy cầu Cửa Đại tự tử: Tìm thấy thi thể cháu bé</h2>
-                            </a>
-                        </li>
-                    
-                        <li>
-                            <a href="https://kenh14.vn/vdv-dien-kinh-viet-nam-bi-tuoc-huy-chuong-noi-dung-10000m-nu-20220519002030138.chn">
-                                <img src="./images/body/article-3.png">
-                                <h2>VĐV điền kinh Việt Nam bị tước huy chương nội dung 10.000m nữ</h2>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a
-                                href="https://kenh14.vn/ngay-lam-ngan-hang-toi-lam-banh-chuoi-nuong-9x-hai-ra-tien-rieng-nghe-tay-trai-thu-ve-hon-100-trieu-moi-thang-20220519095121475.chn">
-                                <img src="./images/body/article-4.png">
-                                <h2>Ngày làm ngân hàng, tối làm bánh chuối nướng, 9X hái ra tiền, riêng nghề tay ...</h2>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="https://kenh14.vn/lam-vy-da-va-dan-sao-du-dam-cuoi-mac-van-khoa-o-hai-duong-20220518101808949.chn">
-                                <img src="./images/body/article-5.png">
-                                <h2>Lâm Vỹ Dạ và dàn sao dự đám cưới Mạc Văn Khoa ở Hải Dương</h2>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a
-                                href="https://kenh14.vn/dien-bien-gay-soc-vu-kien-tung-giua-johnny-depp-va-amber-heard-vo-tre-cam-sung-chong-toa-cho-nhan-chung-quan-trong-20220518211610211.chn">
-                                <img src="./images/body/article-6.png">
-                                <h2>Diễn biến gây sốc vụ kiện tụng giữa Johnny Depp và Amber Heard: Vợ trẻ "cắm sừng" ...</h2>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a
-                                href="https://kenh14.vn/cong-an-tphcm-ket-luan-vu-hoa-hau-la-ky-anh-trom-dong-ho-rolex-20220518205032401.chn">
-                                <img src="./images/body/article-7.png">
-                                <h2>Công an TP.HCM kết luận vụ hoa hậu Lã Kỳ Anh trộm đồng hồ Rolex</h2>
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- Swiper Button Forward-->
-                    <div id ="swiper-forward" class="swiper-forward" onmouseover="setNewMarginForward()" onmouseout="setOldMarginForward()" onclick="moveForward()"></div>
-                    <div id ="swiper-backward" class="swiper-backward" onmouseover="setNewMarginBackward()" onmouseout="setOldMarginBackward()" onclick="moveBackward()"></div>
-                    
-                    
-                
-                </div>
-                <div class="swiper-navigation">
-                    <span id="bullet-0"></span>
-                    <span id="bullet-1"></span>
-                    <span id="bullet-2"></span>
-                    <span id="bullet-3"></span>
-                </div>
-            </div>
-        </div>
-
+  <div class="nav-bar">
+    <div class="nav-items">
+      <a href="https://gmail.com">Gmail</a>
     </div>
-    <script src="./index.js"></script>
+    <div class="nav-items">
+      <a href="https://www.google.com/imghp">Images</a>
+    </div>
+    <div class="nav-items">
+      <div class="expand-button">
+        <svg class="gb_i" focusable="false" viewBox="0 0 24 24">
+          <path fill="#FFF"
+            d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z">
+          </path>
+        </svg>
+      </div>
+    </div>
+    <div class="nav-items">
+      <div class="avatar">
+        <img src="https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwxNDk0OTAwfHxlbnwwfHx8fHw%3D&w=1000&q=80"></img>
+      </div>
+    </div>
+  </div>
+  <div class="expand-tooltip">Recommended apps</div>
+  <div class="expand-wrapper">
+    <div class="expand-menu">
+      <ul class="expand-list">
+        <li class="expand-item">
+          <a href="https://myaccount.google.com/">
+            <img src="https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwxNDk0OTAwfHxlbnwwfHx8fHw%3D&w=1000&q=80"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://mail.google.com/">
+            <img src="./public/icons/gmail.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://drive.google.com/">
+            <img src="./public/icons/drive.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://docs.google.com/">
+            <img src="./public/icons/doc.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://docs.google.com/spreadsheets/">
+            <img src="./public/icons/sheet.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://colab.google/">
+            <img style="width: 76px;" src="./public/icons/colab.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://calendar.google.com/">
+            <img src="./public/icons/calendar.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://mail.google.com/chat/">
+            <img style="border-radius: 0; width: 40px; height: 40px;" src="./public/icons/chat.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://meet.google.com/">
+            <img style="border-radius: 0; width: 40px; height: 40px;" src="./public/icons/meet.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://leetcode.com/problemset/all/">
+            <img src="./public/icons/leetcode.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://stackoverflow.com/">
+            <img src="./public/icons/stackoverflow.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://aws.amazon.com/">
+            <img src="./public/icons/aws.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="vscode://">
+            <img src="./public/icons/vscode.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://www.youtube.com/">
+            <img style="border-radius: 0;" src="./public/icons/youtube.png"></img>
+          </a>
+        </li>
+        <li class="expand-item">
+          <a href="https://www.facebook.com/">
+            <img src="./public/icons/facebook.png"></img>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="dropdown-tooltip"></div>
+  <div class="search-container">
+    <div class="gif-container">
+      <img src="https://cataas.com/cat/gif"/>
+      <div class="avatar-container">
+        <img src="https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwxNDk0OTAwfHxlbnwwfHx8fHw%3D&w=1000&q=80"/>
+      </div>
+    </div>
+    <div class="search-input-wrapper">
+      <div class="search-input-container">
+        <img style="height: 1.5rem;" src="https://assets.codepen.io/1468070/Google+G+Icon.png" alt="" />
+        <input type="text" placeholder="Search anything" id="search" />
+      </div>
+      <button class="mic-button" type="button">
+      </button>
+      <button class="camera-button" type="button">
+      </button>
+    </div>
+  </div>
+  <div class="app-container">
+    <ul>
+      <li>
+        <a href="https://stackoverflow.com/">
+          <img src="./public/icons/stackoverflow.png"/>
+          <div>
+            <h4>Stackoverflow</h5>
+            <p>stackoverflow.com</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="https://github.com/">
+          <img src="./public/icons/github.png"/>
+          <div>
+            <h4>Github</h5>
+              <p>github.com</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="https://chat.openai.com/">
+          <img src="./public/icons/chatgpt.png"/>
+          <div>
+            <h4>Chat GPT</h5>
+              <p>chat.openai.com</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.reddit.com/">
+          <img src="./public/icons/reddit.png"/>
+          <div>
+            <h4>Reddit</h5>
+              <p>reddit.com</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.youtube.com/">
+          <img src="./public/icons/youtube.png"/>
+          <div>
+            <h4>YouTube</h5>
+              <p>youtube.com</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="https://open.spotify.com/">
+          <img src="./public/icons/spotify.png"/>
+          <div>
+            <h4>Spotify</h5>
+              <p>spotify.com</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.netflix.com/">
+          <img src="./public/icons/netflix.png"/>
+          <div>
+            <h4>Netflix</h5>
+              <p>netflix.com</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a href="https://store.steampowered.com/">
+          <img src="./public/icons/steam.png"/>
+          <div>
+            <h4>Steam</h5>
+              <p>steam.com</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <script src="./index.js"></script>
 </body>
+
 </html>

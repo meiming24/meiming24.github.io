@@ -1,108 +1,74 @@
-let marginWidth = 0;
-let count = 0;
+const expandButton = document.getElementsByClassName('expand-button')[0];
+const expandTooltip = document.getElementsByClassName('expand-tooltip')[0];
 
-function setNewMarginForward(){
-    if(count <= 2){
-        document.getElementById("slider-list").style.transitionDuration = "0.5s";
-        document.getElementById("slider-list").style.marginLeft = `${marginWidth-40}px`;
-        marginWidth -= 40;
-    }
+expandButton.onmouseover = function () {
+  expandTooltip.style.display = 'block';
+};
+expandButton.onmouseout = function () {
+  expandTooltip.style.display = 'none';
+};
+
+const avatar = document.getElementsByClassName('avatar')[0];
+avatar.onmouseover = function () {
+  expandTooltip.style.display = 'block';
+  expandTooltip.style.right = '8px';
+  expandTooltip.innerHTML = 'Vincent Mai' + '&#10;' + 'minhmv249@gmail.com';
+}
+avatar.onmouseout = function () {
+  expandTooltip.style.display = 'none';
+  expandTooltip.style.right = '14px';
+  expandTooltip.innerHTML = 'Recommended apps';
+};
+
+const expandWrapper = document.getElementsByClassName('expand-wrapper')[0];
+expandButton.onclick = function () {
+  if (expandWrapper.style.display === "block") {
+    expandWrapper.style.display = "none";
+  } else {
+    expandWrapper.style.display = "block";
+  }
 }
 
-function setOldMarginForward(){
-    if(count <= 2){
-        document.getElementById("slider-list").style.marginLeft = `${marginWidth + 40}px`;
-        marginWidth += 40;
-    }
+window.addEventListener('click', function (event) {
+  if (!expandWrapper.contains(event.target) && !expandButton.contains(event.target)) {
+    expandWrapper.style.display = 'none';
+  }
+});
+
+const menuItemNames = [
+  'My accounts', 'Gmail',
+  'Drive', 'Doc',
+  'Sheet', 'Colab',
+  'Calendar', 'Chat',
+  'Meet', 'Leetcode',
+  'Stackoverflow', 'AWS',
+  'VSCode', 'Youtube',
+  'Facebook'
+]
+
+const expandMenuItems = document.getElementsByClassName('expand-item');
+const expandMenu = document.getElementsByClassName('expand-list')[0];
+const expandMenuTooltip = document.getElementsByClassName('dropdown-tooltip')[0];
+
+for(const expandMenuItem of expandMenuItems) {
+  expandMenuItem.onmouseover = function (event) {
+    const index = Array.from(expandMenu.getElementsByTagName('li')).indexOf(expandMenuItem);
+    expandMenuTooltip.style.display = 'block';
+    expandMenuTooltip.innerHTML = menuItemNames[index];
+    const left  = event.clientX  + "px";
+    const top  = event.clientY  + "px";
+    console.log(left, top)
+    expandMenuTooltip.style.left = left;
+    expandMenuTooltip.style.top = top;
+  }
+  expandMenuItem.onmouseout = function () {
+    expandMenuTooltip.style.display = 'none';
+  }
 }
 
-function moveForward(){
-    if(count < 3){
-        if(count < 2){
-            document.getElementById("slider-list").style.marginLeft = `${marginWidth-540}px`;
-            document.getElementById("swiper-backward").style.backgroundColor = "rgba(251,108,39, 0.9)";
-            marginWidth -= 540;
-        }
-        else {
-            document.getElementById("slider-list").style.marginLeft = `${marginWidth-50}px`;
-            document.getElementById("slider-list").disabled = true;
-            document.getElementById("swiper-forward").style.backgroundColor = "rgba(51,51,51, 0.9)";
-        }
-        count++;
-    }
-    document.getElementById(`bullet-${count-1}`).style.backgroundColor = "rgba(0,0,0,0.2)";
-    document.getElementById(`bullet-${count}`).style.backgroundColor = "rgba(251,108,39,1)";
-}
-
-function setNewMarginBackward(){
-    document.getElementById("swiper-backward").style.transitionDuration = "0.5s";
-    document.getElementById("swiper-backward").style.left = "0px";
-
-    if(count > 1) {
-        document.getElementById("slider-list").style.transitionDuration = "0.5s";
-        document.getElementById("slider-list").style.marginLeft = `${marginWidth+40}px`;
-        document.getElementById("swiper-backward").style.backgroundColor = "rgba(251,108,39, 0.9)";
-        marginWidth += 40;
-    }
-}
-
-function setOldMarginBackward(){
-    document.getElementById("swiper-backward").style.transitionDuration = "0.5s";
-    document.getElementById("swiper-backward").style.left = "-35px";
-
-    if(count > 1) {
-        document.getElementById("slider-list").style.transitionDuration = "0.5s";
-        document.getElementById("slider-list").style.marginLeft = `${marginWidth-40}px`;
-        document.getElementById("swiper-backward").style.backgroundColor = "rgba(251,108,39, 0.9)";
-        marginWidth -= 40;
-    }
-}
-
-function moveBackward(){
-    if(count > 0){
-        if(count == 1) {
-            document.getElementById("slider-list").style.marginLeft = `${marginWidth + 540}px`;
-            document.getElementById("swiper-backward").style.backgroundColor = "rgba(51,51,51, 0.9)";
-            marginWidth += 540;
-            count--;
-        }
-        else if (count == 2){
-            document.getElementById("slider-list").style.marginLeft = `${marginWidth + 500}px`;
-            marginWidth += 500;
-            count--;
-        }
-        else {
-            document.getElementById("slider-list").style.marginLeft = `${marginWidth + 540}px`;
-            document.getElementById("swiper-forward").style.backgroundColor = "rgba(251,108,39, 0.9)";
-            marginWidth += 540;
-            count-=2;
-        }
-        document.getElementById(`bullet-${count}`).style.backgroundColor = "rgba(251,108,39,1)";
-        document.getElementById(`bullet-${count+1}`).style.backgroundColor = "rgba(0,0,0,0.2)";
-        document.getElementById(`bullet-${count+2}`).style.backgroundColor = "rgba(0,0,0,0.2)";
-    }
-    
-    console.log(count + ' move back')
-}
-
-function viewBackwardBtn(){
-    document.getElementById("swiper-backward").style.transitionDuration = "0.5s";
-    document.getElementById("swiper-backward").style.left = "0px";
-}
-
-function hideBackwardBtn(){
-    document.getElementById("swiper-backward").style.transitionDuration = "0.5s";
-    document.getElementById("swiper-backward").style.left = "-35px";
-}
-
-function moreOver(){
-    document.getElementById("more-icon-img").src = "./images/header/exit.png";
-    document.getElementById("more-icon-img").style.width = "30px";
-    document.getElementById("extend-menu").style.visibility = "visible";
-}
-
-function moreOut(){
-    document.getElementById("more-icon-img").src = "./images/header/more-icon.png";
-    document.getElementById("more-icon-img").style.width = "30px";
-    document.getElementById("extend-menu").style.visibility = "hidden";
+const searchInput = document.getElementById('search');
+searchInput.onkeydown = function (event) {
+  if(event.keyCode === 13) {
+    window.location.href = `https://www.google.com/search?q=${searchInput.value}`
+  }
 }
