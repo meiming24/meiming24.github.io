@@ -127,7 +127,9 @@ if ("webkitSpeechRecognition" in window) {
   }
 
   speechRecognition.onend = function () {
-    window.location.href = `https://www.google.com/search?q=${final_transcript}`;  
+    if (!final_transcript) {
+      window.location.href = `https://www.google.com/search?q=${final_transcript}`;  
+    }
   }
 
   exitSpeech.onclick = function () {
