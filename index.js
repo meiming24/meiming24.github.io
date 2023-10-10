@@ -50,13 +50,13 @@ const expandMenuItems = document.getElementsByClassName('expand-item');
 const expandMenu = document.getElementsByClassName('expand-list')[0];
 const expandMenuTooltip = document.getElementsByClassName('dropdown-tooltip')[0];
 
-for(const expandMenuItem of expandMenuItems) {
+for (const expandMenuItem of expandMenuItems) {
   expandMenuItem.onmouseover = function (event) {
     const index = Array.from(expandMenu.getElementsByTagName('li')).indexOf(expandMenuItem);
     expandMenuTooltip.style.display = 'block';
     expandMenuTooltip.innerHTML = menuItemNames[index];
-    const left  = event.clientX  + "px";
-    const top  = event.clientY  + "px";
+    const left = event.clientX + "px";
+    const top = event.clientY + "px";
     console.log(left, top)
     expandMenuTooltip.style.left = left;
     expandMenuTooltip.style.top = top;
@@ -68,7 +68,7 @@ for(const expandMenuItem of expandMenuItems) {
 
 const searchInput = document.getElementById('search');
 searchInput.onkeydown = function (event) {
-  if(event.keyCode === 13) {
+  if (event.keyCode === 13) {
     window.location.href = `https://www.google.com/search?q=${searchInput.value}`
   }
 }
@@ -86,10 +86,10 @@ const appLinks = [
 const appList = document.getElementsByClassName('app-list')[0];
 const appItems = document.getElementsByClassName('app-item');
 
-for(const appItem of appItems) {
+for (const appItem of appItems) {
   appItem.onclick = function () {
     const index = Array.from(appList.getElementsByTagName('li')).indexOf(appItem);
-    if(searchInput.value) {
+    if (searchInput.value) {
       console.log(searchInput.value)
       window.location.href = appLinkQueries[index] + searchInput.value;
     }
@@ -97,4 +97,47 @@ for(const appItem of appItems) {
       window.location.href = appLinks[index];
     }
   }
+}
+
+const micButton = document.getElementsByClassName('mic-button')[0];
+const speechButton = document.getElementsByClassName('speech-icon')[0];
+const speechContainer = document.getElementsByClassName('speech-container')[0];
+const soundContainer = document.getElementsByClassName('sound-container')[0];
+const exitSpeech = document.getElementsByClassName('exit-speech')[0];
+const transcript = document.getElementById('transcript');
+
+micButton.onclick = function () {
+  speechContainer.style.display = 'block';
+}
+
+if ("webkitSpeechRecognition" in window) {
+  let speechRecognition = new webkitSpeechRecognition();
+  speechRecognition.continuous = true;
+  speechRecognition.interimResults = true;
+  speechRecognition.lang = 'en - US';
+  let final_transcript = "";
+
+  speechRecognition.onresult = (event) => {
+    for (let i = event.resultIndex; i < event.results.length; ++i) {
+      if (event.results[i].isFinal) {
+        final_transcript += event.results[i][0].transcript;
+      }
+    }
+    transcript.innerHTML = final_transcript;
+  }
+
+  exitSpeech.onclick = function () {
+    speechContainer.style.display = 'none';
+    soundContainer.style.display = 'none';
+    speechButton.style.display = 'block';
+    speechRecognition.stop();
+    transcript.innerHTML = 'Speak now';
+  }
+
+  speechButton.onclick = function () {
+    soundContainer.style.display = 'flex';
+    speechButton.style.display = 'none';
+    speechRecognition.start();
+  }
+
 }

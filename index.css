@@ -329,3 +329,128 @@ body {
   height: 32px;
   margin-right: 10px;
 }
+
+.speech-container {
+  padding-left: 30%;
+  padding-right: 30%;
+  margin-top: 0.4rem;
+  display: none;
+}
+
+.speech-container>.speech-wrapper {
+  width: 100%;
+  height: 120px;
+  background-color: #FFF;
+  border-radius: 0.4rem;
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.speech-container>.speech-wrapper>.exit-speech {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.speech-container>.speech-wrapper>.exit-speech>svg {
+  width: 15px;
+}
+
+.speech-container>.speech-wrapper>.speech-icon {
+  height: 100%;
+  width: fit-content;
+  border-radius: 50%;
+}
+
+.speech-container>.speech-wrapper>.speech-icon>img {
+  width: 120px;
+  border-radius: 50%;
+}
+
+.speech-container>.speech-wrapper>.sound-container {
+  display: none;
+  justify-content: flex-start;
+  padding: 30px;
+}
+
+.speech-container>.speech-wrapper>.sound-container>.sound-wave {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 60px;
+}
+
+@keyframes audio-wave {
+  0% {
+    height: 10px;
+    trnsform: translateY(0px);
+    background: #FF55BB;
+  }
+
+  25% {
+    height: 40px;
+    trnsform: translateY(-5px);
+    scaleY(1.7);
+    background: #FFD3A3;
+  }
+
+  50% {
+    height: 10px;
+    trnsform: translateY(0px);
+    scaleY(1.7);
+    background;
+    #FCFFB2;
+  }
+
+  100% {
+    height: 10px;
+    trnsform: translateY(0px);
+    scaleY(1.7);
+    background;
+    #B6EAFA;
+  }
+}
+
+.speech-container>.speech-wrapper>.sound-container>.sound-wave>span {
+  height: 18px;
+  width: 10px;
+  display: block;
+  border-radius: 8px;
+  background: orange;
+  animation: audio-wave 2.2s infinite ease-in-out
+}
+
+.speech-container>.speech-wrapper>.sound-container>.sound-wave>span:nth-child(2) {
+  left: 11px;
+  background: red;
+  animation-delay: 0.2s
+}
+
+.speech-container>.speech-wrapper>.sound-container>.sound-wave>span:nth-child(3) {
+  left: 22px;
+  animation-delay: 0.4s
+}
+
+.speech-container>.speech-wrapper>.sound-container>.sound-wave>span:nth-child(4) {
+  left: 33px;
+  animation-delay: 0.6s
+}
+
+.speech-container>.speech-wrapper>.sound-container>.sound-wave>span:nth-child(5) {
+  left: 44px;
+  animation-delay: 0.8s
+}
+
+.speech-container>.speech-wrapper>.sound-container>.sound-wave>span:nth-child(6) {
+  left: 55px;
+  animation-delay: 1s
+}
+
+.speech-container>.speech-wrapper>#transcript {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  padding-right: 30px;
+}
