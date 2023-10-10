@@ -131,6 +131,7 @@ if ("webkitSpeechRecognition" in window) {
     soundContainer.style.display = 'none';
     speechButton.style.display = 'block';
     speechRecognition.stop();
+    final_transcript = "";
     transcript.innerHTML = 'Speak now';
   }
 
