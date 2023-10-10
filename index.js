@@ -112,7 +112,7 @@ micButton.onclick = function () {
 
 if ("webkitSpeechRecognition" in window) {
   let speechRecognition = new webkitSpeechRecognition();
-  speechRecognition.continuous = true;
+  speechRecognition.continuous = false;
   speechRecognition.interimResults = true;
   speechRecognition.lang = 'en - US';
   let final_transcript = "";
@@ -124,6 +124,10 @@ if ("webkitSpeechRecognition" in window) {
       }
     }
     transcript.innerHTML = final_transcript;
+  }
+
+  speechRecognition.onend = function () {
+    window.location.href = `https://www.google.com/search?q=${final_transcript}`;  
   }
 
   exitSpeech.onclick = function () {
