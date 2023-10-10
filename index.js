@@ -72,3 +72,29 @@ searchInput.onkeydown = function (event) {
     window.location.href = `https://www.google.com/search?q=${searchInput.value}`
   }
 }
+
+const appLinkQueries = [
+  'https://stackoverflow.com/search?q=', 'https://github.com/search?q=', 'https://chat.openai.com/', 'https://www.reddit.com/search/?q=',
+  'https://www.youtube.com/results?search_query=', 'https://open.spotify.com/search/', 'https://www.netflix.com/', 'https://store.steampowered.com/search/?term=',
+]
+
+const appLinks = [
+  'https://stackoverflow.com/', 'https://github.com/', 'https://chat.openai.com/', 'https://www.reddit.com/',
+  'https://www.youtube.com/', 'https://open.spotify.com/', 'https://www.netflix.com/', 'https://store.steampowered.com/',
+]
+
+const appList = document.getElementsByClassName('app-list')[0];
+const appItems = document.getElementsByClassName('app-item');
+
+for(const appItem of appItems) {
+  appItem.onclick = function () {
+    const index = Array.from(appList.getElementsByTagName('li')).indexOf(appItem);
+    if(searchInput.value) {
+      console.log(searchInput.value)
+      window.location.href = appLinkQueries[index] + searchInput.value;
+    }
+    else {
+      window.location.href = appLinks[index];
+    }
+  }
+}
