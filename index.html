@@ -1,240 +1,142 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<!--[if lt IE 7]>
+<html class="ie lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="ie lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="ie lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>
+<html> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en"><!-- <![endif]-->
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/x-icon" href="/public/favicon.ico">
-  <link rel="stylesheet" href="./index.css">
-  <title>Default</title>
+    <title>Happy Birthday</title>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Happy Birthday">
+    <meta name="robots" content="index, follow"/>
+    <link rel="author" href="https://plus.google.com/u/1/+AyushSharma1/"/>
+    <meta name="keywords" content="Birthday, Happy">
+    <!-- Strat of Facebook Meta -->
+    <meta property="og:type" content="E-Greeting"/>
+    <meta property="og:image" content="favicon.ico"/>
+    <meta property="og:description" content="Wish you a very Happy Birthday">
+    <!-- End of Facebook Meta Tags -->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE"/>
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="assets/loading.css">
+    <link rel="stylesheet/less" href="assets/cake.less">
+    <script src="assets/less.min.js"></script>
+    <script src="config.js"></script>
 </head>
 
 <body>
-  <div class="nav-bar">
-    <div class="nav-items">
-      <a href="https://gmail.com">Gmail</a>
-    </div>
-    <div class="nav-items">
-      <a href="https://www.google.com/imghp">Images</a>
-    </div>
-    <div class="nav-items">
-      <div class="expand-button">
-        <svg class="gb_i" focusable="false" viewBox="0 0 24 24">
-          <path fill="#FFF"
-            d="M6,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM6,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM12,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM16,6c0,1.1 0.9,2 2,2s2,-0.9 2,-2 -0.9,-2 -2,-2 -2,0.9 -2,2zM12,8c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,14c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2zM18,20c1.1,0 2,-0.9 2,-2s-0.9,-2 -2,-2 -2,0.9 -2,2 0.9,2 2,2z">
-          </path>
-        </svg>
-      </div>
-    </div>
-    <div class="nav-items">
-      <div class="avatar">
-        <img src="https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwxNDk0OTAwfHxlbnwwfHx8fHw%3D&w=1000&q=80"></img>
-      </div>
-    </div>
-  </div>
-  <div class="expand-tooltip">Recommended apps</div>
-  <div class="expand-wrapper">
-    <div class="expand-menu">
-      <ul class="expand-list">
-        <li class="expand-item">
-          <a href="https://myaccount.google.com/">
-            <img src="https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwxNDk0OTAwfHxlbnwwfHx8fHw%3D&w=1000&q=80"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://mail.google.com/">
-            <img src="./public/icons/gmail.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://drive.google.com/">
-            <img src="./public/icons/drive.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://docs.google.com/">
-            <img src="./public/icons/doc.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://docs.google.com/spreadsheets/">
-            <img src="./public/icons/sheet.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://colab.google/">
-            <img style="width: 76px;" src="./public/icons/colab.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://calendar.google.com/">
-            <img src="./public/icons/calendar.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://mail.google.com/chat/">
-            <img style="border-radius: 0; width: 40px; height: 40px;" src="./public/icons/chat.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://meet.google.com/">
-            <img style="border-radius: 0; width: 40px; height: 40px;" src="./public/icons/meet.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://leetcode.com/problemset/all/">
-            <img src="./public/icons/leetcode.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://stackoverflow.com/">
-            <img src="./public/icons/stackoverflow.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://aws.amazon.com/">
-            <img src="./public/icons/aws.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="vscode://">
-            <img src="./public/icons/vscode.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://www.youtube.com/">
-            <img style="border-radius: 0;" src="./public/icons/youtube.png"></img>
-          </a>
-        </li>
-        <li class="expand-item">
-          <a href="https://www.facebook.com/">
-            <img src="./public/icons/facebook.png"></img>
-          </a>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="dropdown-tooltip"></div>
-  <div class="search-container">
-    <div class="gif-container">
-      <img src="https://cataas.com/cat/gif"/>
-      <div class="avatar-container">
-        <img src="https://images.unsplash.com/photo-1490650034439-fd184c3c86a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwxNDk0OTAwfHxlbnwwfHx8fHw%3D&w=1000&q=80"/>
-      </div>
-    </div>
-    <div class="search-input-wrapper">
-      <div class="search-input-container">
-        <img style="height: 1.5rem;" src="https://assets.codepen.io/1468070/Google+G+Icon.png" alt="" />
-        <input type="text" placeholder="Search anything" id="search" />
-      </div>
-      <button class="mic-button" type="button">
-      </button>
-      <button class="camera-button" type="button">
-      </button>
-    </div>
-  </div>
-  <div class="speech-container">
-    <div class="speech-wrapper">
-      <div class="exit-speech">
-        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-          viewBox="0 0 14 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-        </svg>
-      </div>
-      <div class="speech-icon">
-        <img src="/public/icons/mic-icon.png"/>
-      </div>
-      <div class="sound-container">
-        <div class="sound-wave">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
+<div class="loading"></div>
+<audio class="song" controls loop>
+    <source src="assets/hbd.mp3"></source>
+    Your browser isn't invited for super fun audio time.
+</audio>
+<div class="balloons text-center" id="b1">
+    <h2 style="color: white;">M</h2>
+</div>
+<div class="balloons text-center" id="b2">
+    <h2 style="color: white;">A</h2>
+</div>
+<div class="balloons text-center" id="b3">
+    <h2 style="color: white;">I</h2>
+</div>
+<div class="balloons text-center" id="b4">
+    <h2 style="color: white;">L</h2>
+</div>
+<div class="balloons text-center" id="b5">
+    <h2 style="color: white;">I</h2>
+</div>
+<div class="balloons text-center" id="b6">
+    <h2 style="color: white;">N</h2>
+</div>
+<div class="balloons text-center" id="b7">
+    <h2 style="color: white;">H</h2>
+</div>
+
+<img src="assets/Balloon-Border.png" width="100%" class="balloon-border">
+
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-2 col-xs-2 bulb-holder">
+            <div class="bulb" id="bulb_yellow"></div>
         </div>
-      </div>
-      <div id="transcript">Speak now</div>
+        <div class="col-md-2 col-xs-2 bulb-holder">
+            <div class="bulb" id="bulb_red"></div>
+        </div>
+        <div class="col-md-2 col-xs-2 bulb-holder">
+            <div class="bulb" id="bulb_blue"></div>
+        </div>
+        <div class="col-md-2 col-xs-2 bulb-holder">
+            <div class="bulb" id="bulb_green"></div>
+        </div>
+        <div class="col-md-2 col-xs-2 bulb-holder">
+            <div class="bulb" id="bulb_pink"></div>
+        </div>
+        <div class="col-md-2 col-xs-2 bulb-holder">
+            <div class="bulb" id="bulb_orange"></div>
+        </div>
     </div>
-  </div>
-  <div class="app-container">
-    <ul class="app-list">
-      <li class="app-item">
-        <a>
-          <img src="./public/icons/stackoverflow.png"/>
-          <div>
-            <h4>Stackoverflow</h5>
-            <p>stackoverflow.com</p>
-          </div>
-        </a>
-      </li>
-      <li class="app-item">
-        <a>
-          <img src="./public/icons/github.png"/>
-          <div>
-            <h4>Github</h5>
-              <p>github.com</p>
-          </div>
-        </a>
-      </li>
-      <li class="app-item">
-        <a>
-          <img src="./public/icons/chatgpt.png"/>
-          <div>
-            <h4>Chat GPT</h5>
-              <p>chat.openai.com</p>
-          </div>
-        </a>
-      </li>
-      <li class="app-item">
-        <a>
-          <img src="./public/icons/reddit.png"/>
-          <div>
-            <h4>Reddit</h5>
-              <p>reddit.com</p>
-          </div>
-        </a>
-      </li>
-      <li class="app-item">
-        <a>
-          <img src="./public/icons/youtube.png"/>
-          <div>
-            <h4>YouTube</h5>
-              <p>youtube.com</p>
-          </div>
-        </a>
-      </li>
-      <li class="app-item">
-        <a>
-          <img src="./public/icons/spotify.png"/>
-          <div>
-            <h4>Spotify</h5>
-              <p>spotify.com</p>
-          </div>
-        </a>
-      </li>
-      <li class="app-item">
-        <a>
-          <img src="./public/icons/netflix.png"/>
-          <div>
-            <h4>Netflix</h5>
-              <p>netflix.com</p>
-          </div>
-        </a>
-      </li>
-      <li class="app-item">
-        <a>
-          <img src="./public/icons/steam.png"/>
-          <div>
-            <h4>Steam</h5>
-              <p>steam.com</p>
-          </div>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <script src="./index.js"></script>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <img src="assets/banner.png" class="bannar">
+        </div>
+    </div>
+    <!-- <div class="row message">
+        <div class="col-md-12"><p>Khushbu</p></div>
+    </div> -->
+    <div class="row cake-cover">
+        <div class="col-md-12 texr-center">
+            <div class="cake">
+                <div class="velas">
+                    <div class="fuego"></div>
+                    <div class="fuego"></div>
+                    <div class="fuego"></div>
+                    <div class="fuego"></div>
+                    <div class="fuego"></div>
+                </div>
+                <div class="cobertura"></div>
+                <div class="bizcocho"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row message">
+        <div class="col-md-12" id="texts-container">
+        </div>
+    </div>
+    <div class="navbar navbar-fixed-bottom">
+        <div class="row">
+            <div class="col-md-6 text-center col-md-offset-3">
+                <button class="btn btn-primary" id="turn_on">Turn On Lights</button>
+                <button class="btn btn-primary" id="play">Play Music</button>
+                <button class="btn btn-primary" id="bannar_coming">Let's Decorate</button>
+                <button class="btn btn-primary" id="balloons_flying">Fly With Balloons</button>
+                <button class="btn btn-primary" id="cake_fadein">Most Delicious Cake Ever</button>
+                <button class="btn btn-primary" id="light_candle"> Light Candle</button>
+                <button class="btn btn-primary" id="wish_message">Happy Birthday</button>
+                <button class="btn btn-primary" id="story">A mesage for you</button>
+                <!-- <button class="btn btn-primary" id="cake_cut">Lrt's Cut the Cake</button> -->
+            </div>
+        </div>
+    </div>
+
+
+</div>
 </body>
+<script src="assets/jquery.min.js"></script>
+<script src="./assets/bootstrap.min.js"></script>
+<script src="assets/effect.js"></script>
+
+<script src="custom.js"></script>
 
 </html>
