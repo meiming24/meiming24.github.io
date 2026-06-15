@@ -3,4 +3,3 @@ dist
 *.local
 .env
 public/tama.b
-public/tamagotchi/assets/*.bin
