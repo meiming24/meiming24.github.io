@@ -1,0 +1,58 @@
+export const DEFAULT_SHORTCUTS = [
+  {
+    id: 'stackoverflow',
+    name: 'Stackoverflow',
+    domain: 'stackoverflow.com',
+    queryUrl: 'https://stackoverflow.com/search?q=',
+    baseUrl: 'https://stackoverflow.com/',
+  },
+  {
+    id: 'github',
+    name: 'Github',
+    domain: 'github.com',
+    queryUrl: 'https://github.com/search?q=',
+    baseUrl: 'https://github.com/',
+  },
+  {
+    id: 'chatgpt',
+    name: 'Chat GPT',
+    domain: 'chat.openai.com',
+    queryUrl: 'https://chat.openai.com/',
+    baseUrl: 'https://chat.openai.com/',
+  },
+  {
+    id: 'reddit',
+    name: 'Reddit',
+    domain: 'reddit.com',
+    queryUrl: 'https://www.reddit.com/search/?q=',
+    baseUrl: 'https://www.reddit.com/',
+  },
+  {
+    id: 'youtube',
+    name: 'YouTube',
+    domain: 'youtube.com',
+    queryUrl: 'https://www.youtube.com/results?search_query=',
+    baseUrl: 'https://www.youtube.com/',
+  },
+  {
+    id: 'spotify',
+    name: 'Spotify',
+    domain: 'open.spotify.com',
+    queryUrl: 'https://open.spotify.com/search/',
+    baseUrl: 'https://open.spotify.com/',
+  },
+  {
+    id: 'netflix',
+    name: 'Netflix',
+    domain: 'netflix.com',
+    queryUrl: 'https://www.netflix.com/',
+    baseUrl: 'https://www.netflix.com/',
+  },
+  {
+    id: 'steam',
+    name: 'Steam',
+    domain: 'store.steampowered.com',
+    queryUrl: 'https://store.steampowered.com/search/?term=',
+    baseUrl: 'https://store.steampowered.com/',
+  },
+];
