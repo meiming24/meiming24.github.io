@@ -6,6 +6,7 @@ const MAX_SHORTCUTS = 10;
 
 function ShortcutMenu({ app, isOpen, onToggle, onClose, onEdit, onRemove }) {
   const menuRef = useRef(null);
+  const longPressRef = useRef(null);
 
   useEffect(() => {
     if (!isOpen) {
@@ -22,6 +23,16 @@ function ShortcutMenu({ app, isOpen, onToggle, onClose, onEdit, onRemove }) {
     return () => window.removeEventListener('pointerdown', handlePointerDown);
   }, [isOpen, onClose]);
 
+  const handleTouchStart = useCallback(() => {
+    longPressRef.current = window.setTimeout(() => {
+      onToggle();
+    }, 500);
+  }, [onToggle]);
+
+  const handleTouchEnd = useCallback(() => {
+    window.clearTimeout(longPressRef.current);
+  }, []);
+
   return (
     <div className={`app-item-menu${isOpen ? ' app-item-menu--open' : ''}`} ref={menuRef}>
       <button
@@ -29,6 +40,8 @@ function ShortcutMenu({ app, isOpen, onToggle, onClose, onEdit, onRemove }) {
         className="app-item-menu-trigger"
         aria-label={`Shortcut options for ${app.name}`}
         aria-expanded={isOpen}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         onClick={(event) => {
           event.stopPropagation();
           onToggle();
@@ -179,6 +192,8 @@ export default function AppList({
 }) {
   const [menuOpenId, setMenuOpenId] = useState(null);
   const [modal, setModal] = useState(null);
+  const iconLongPressRef = useRef(null);
+  const didLongPressRef = useRef(false);
 
   const visibleShortcuts = shortcuts.slice(0, MAX_SHORTCUTS);
 
@@ -202,7 +217,22 @@ export default function AppList({
             <button
               type="button"
               className="app-item-link"
-              onClick={() => onAppClick(app)}
+              onTouchStart={() => {
+                didLongPressRef.current = false;
+                iconLongPressRef.current = window.setTimeout(() => {
+                  didLongPressRef.current = true;
+                  setMenuOpenId((current) => (current === app.id ? null : app.id));
+                }, 500);
+              }}
+              onTouchEnd={() => window.clearTimeout(iconLongPressRef.current)}
+              onTouchMove={() => window.clearTimeout(iconLongPressRef.current)}
+              onClick={(e) => {
+                if (didLongPressRef.current) {
+                  e.preventDefault();
+                  return;
+                }
+                onAppClick(app);
+              }}
             >
               <span className="app-item-icon-wrap">
                 <ShortcutIcon key={app.domain} domain={app.domain} />

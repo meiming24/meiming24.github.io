@@ -2900,3 +2900,130 @@ body {
     transform: translateX(0);
   }
 }
+
+/* ── Touch devices: shortcut menu trigger always visible ─── */
+@media (hover: none) {
+  .app-item-menu-trigger {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Bigger tap targets for icons */
+  .app-item-icon-wrap {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  .app-item-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .app-item {
+    width: 5.25rem;
+  }
+
+  /* Hide Spotify "not configured" placeholder — just clutter on mobile */
+  .spotify-player-shell--static {
+    display: none;
+  }
+}
+
+/* ── Mobile ──────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .search-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 0.75rem;
+  }
+
+  .app-container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    margin: 1.5rem 0 6rem; /* bottom margin to clear the dock */
+  }
+
+  .app-list {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0.75rem 1rem;
+  }
+
+  .speech-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .weather-widget {
+    display: none;
+  }
+
+  .nav-bar > .nav-items > a {
+    font-size: 13px;
+    margin-left: 8px;
+  }
+
+  /* Bottom dock: stick to bottom, full-width pill */
+  .bottom-dock {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.6rem 0.75rem 0.75rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: rgb(20 20 28 / 85%);
+    backdrop-filter: blur(16px);
+    border-top: 1px solid rgb(255 255 255 / 8%);
+    gap: 0.5rem;
+  }
+
+  /* Spotify pill grows to fill available space */
+  .spotify-player-shell {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .spotify-player-dock-row {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .search-container > .gif-container {
+    height: clamp(8rem, 38vw, 11rem);
+  }
+
+  .tamagotchi-panel {
+    width: min(92vw, 42rem);
+  }
+
+  /* Tamagotchi launcher slightly smaller on mobile */
+  .tamagotchi-launcher {
+    width: 2.85rem;
+    height: 3.25rem;
+  }
+
+  .tamagotchi-launcher-body {
+    width: 2.15rem;
+    height: 2.55rem;
+  }
+}
+
+/* ── Tablet ──────────────────────────────────────────────── */
+@media (min-width: 641px) and (max-width: 900px) {
+  .search-container {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+
+  .app-container {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+
+  .speech-container {
+    padding-left: 8%;
+    padding-right: 8%;
+  }
+}
