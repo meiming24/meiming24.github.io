@@ -28,6 +28,26 @@ function NewGameIcon() {
   );
 }
 
+function SaveIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z" strokeLinejoin="round" />
+      <path d="M17 21v-8H7v8" strokeLinejoin="round" />
+      <path d="M7 3v5h8" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function LoadIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
+      <path d="M3 15v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M7 10l5 5 5-5" strokeLinecap="round" strokeLinejoin="round" />
+      <line x1="12" y1="15" x2="12" y2="3" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function ShellSkinIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.55">
@@ -71,8 +91,11 @@ export default function TamagotchiPanelControls({
   pauseDisabled,
   isPaused,
   skinsOpen,
+  hasSaveSlot,
   onTogglePause,
   onNewGame,
+  onSave,
+  onLoad,
   onToggleSkins,
 }) {
   return (
@@ -85,6 +108,24 @@ export default function TamagotchiPanelControls({
         onClick={onTogglePause}
       >
         {isPaused ? <PlayIcon /> : <PauseIcon />}
+      </DockButton>
+
+      <DockButton
+        label="Save game"
+        className="tamagotchi-dock-btn tamagotchi-dock-btn--save"
+        disabled={disabled}
+        onClick={onSave}
+      >
+        <SaveIcon />
+      </DockButton>
+
+      <DockButton
+        label="Load saved game"
+        className="tamagotchi-dock-btn tamagotchi-dock-btn--load"
+        disabled={disabled || !hasSaveSlot}
+        onClick={onLoad}
+      >
+        <LoadIcon />
       </DockButton>
 
       <DockButton

@@ -1,6 +1,7 @@
 const DB_NAME = 'homepage-tamagotchi-v3';
 const STORE_NAME = 'states';
 const STATE_KEY = 'cpu';
+const SAVE_SLOT_KEY = 'save-slot';
 
 function openDatabase() {
   return new Promise((resolve, reject) => {
@@ -34,6 +35,33 @@ export async function loadTamagotchiState() {
   const state = await new Promise((resolve, reject) => {
     const transaction = db.transaction(STORE_NAME, 'readonly');
     const request = transaction.objectStore(STORE_NAME).get(STATE_KEY);
+    request.onsuccess = () => resolve(request.result ?? null);
+    request.onerror = () => reject(request.error ?? new Error('IndexedDB read failed'));
+  });
+
+  db.close();
+  return state;
+}
+
+export async function saveToSlot(state) {
+  const db = await openDatabase();
+
+  await new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, 'readwrite');
+    transaction.objectStore(STORE_NAME).put(state, SAVE_SLOT_KEY);
+    transaction.oncomplete = () => resolve();
+    transaction.onerror = () => reject(transaction.error ?? new Error('IndexedDB write failed'));
+  });
+
+  db.close();
+}
+
+export async function loadFromSlot() {
+  const db = await openDatabase();
+
+  const state = await new Promise((resolve, reject) => {
+    const transaction = db.transaction(STORE_NAME, 'readonly');
+    const request = transaction.objectStore(STORE_NAME).get(SAVE_SLOT_KEY);
     request.onsuccess = () => resolve(request.result ?? null);
     request.onerror = () => reject(request.error ?? new Error('IndexedDB read failed'));
   });

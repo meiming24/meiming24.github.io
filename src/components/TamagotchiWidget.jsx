@@ -72,7 +72,7 @@ export default function TamagotchiWidget() {
 
   const { skin, skinId, setSkinId, skins } = useTamagotchiSkin();
 
-  const { screenRef, status, error, config, sendButton, tapButton, resetGame, togglePause, isPaused } =
+  const { screenRef, status, error, config, sendButton, tapButton, resetGame, togglePause, saveSlot, loadSlot, hasSaveSlot, isPaused } =
 
     useTamagotchiEmulator(open);
 
@@ -392,8 +392,11 @@ export default function TamagotchiWidget() {
                     pauseDisabled={!controlsReady}
                     isPaused={isPaused}
                     skinsOpen={skinsOpen}
+                    hasSaveSlot={hasSaveSlot}
                     onTogglePause={togglePause}
                     onNewGame={resetGame}
+                    onSave={saveSlot}
+                    onLoad={loadSlot}
                     onToggleSkins={() => setSkinsOpen((current) => !current)}
                   />
                 </div>

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { loadP1BrickConfig } from '../tamagotchi/brickConfig';
-import { clearTamagotchiState, loadTamagotchiState, saveTamagotchiState } from '../tamagotchi/storage';
+import { clearTamagotchiState, loadTamagotchiState, saveTamagotchiState, saveToSlot, loadFromSlot } from '../tamagotchi/storage';
 import { LIB_BASE_URL, WORKER_URL } from '../tamagotchi/paths';
 import { VRAM_SIZE } from '../tamagotchi/vram';
 import { handleTamagotchiBeep, handleTamagotchiSoundStop, tamagotchiAudio } from '../tamagotchi/audio';
@@ -15,13 +15,22 @@ export function useTamagotchiEmulator(active) {
   const [error, setError] = useState('');
   const [config, setConfig] = useState(null);
   const [sessionKey, setSessionKey] = useState(0);
-  const [pauseWanted, setPauseWanted] = useState(false);
+  const [pauseWanted, setPauseWanted] = useState(
+    () => localStorage.getItem('tamagotchi-paused') === 'true',
+  );
+  const [hasSaveSlot, setHasSaveSlot] = useState(false);
   const skipSavedRef = useRef(false);
   const pauseWantedRef = useRef(false);
+  const pendingSaveSlotRef = useRef(false);
 
   useEffect(() => {
     pauseWantedRef.current = pauseWanted;
+    localStorage.setItem('tamagotchi-paused', String(pauseWanted));
   }, [pauseWanted]);
+
+  useEffect(() => {
+    loadFromSlot().then((s) => setHasSaveSlot(s != null)).catch(() => {});
+  }, []);
 
   const sendButton = useCallback((button, pressed) => {
     workerRef.current?.postMessage({ type: 'button', button, pressed });
@@ -39,6 +48,20 @@ export function useTamagotchiEmulator(active) {
     setPauseWanted(false);
     await clearTamagotchiState();
     skipSavedRef.current = true;
+    setSessionKey((key) => key + 1);
+  }, []);
+
+  const saveSlot = useCallback(() => {
+    if (!workerRef.current) return;
+    pendingSaveSlotRef.current = true;
+    workerRef.current.postMessage({ type: 'save' });
+  }, []);
+
+  const loadSlot = useCallback(async () => {
+    const slotState = await loadFromSlot();
+    if (!slotState) return;
+    await saveTamagotchiState(slotState);
+    skipSavedRef.current = false;
     setSessionKey((key) => key + 1);
   }, []);
 
@@ -157,6 +180,12 @@ export function useTamagotchiEmulator(active) {
 
         if (type === 'state') {
           saveTamagotchiState(event.data.state).catch(() => {});
+          if (pendingSaveSlotRef.current) {
+            pendingSaveSlotRef.current = false;
+            saveToSlot(event.data.state)
+              .then(() => setHasSaveSlot(true))
+              .catch(() => {});
+          }
           return;
         }
 
@@ -221,6 +250,9 @@ export function useTamagotchiEmulator(active) {
     tapButton,
     resetGame,
     togglePause,
+    saveSlot,
+    loadSlot,
+    hasSaveSlot,
     isPaused: pauseWanted || status === 'paused',
   };
 }
