@@ -91,11 +91,12 @@ export default function TamagotchiPanelControls({
   pauseDisabled,
   isPaused,
   skinsOpen,
-  hasSaveSlot,
+  saveDrawerMode,
+  hasAnySaveSlot,
   onTogglePause,
   onNewGame,
-  onSave,
-  onLoad,
+  onOpenSave,
+  onOpenLoad,
   onToggleSkins,
 }) {
   return (
@@ -112,18 +113,20 @@ export default function TamagotchiPanelControls({
 
       <DockButton
         label="Save game"
-        className="tamagotchi-dock-btn tamagotchi-dock-btn--save"
+        className={`tamagotchi-dock-btn tamagotchi-dock-btn--save${saveDrawerMode === 'save' ? ' tamagotchi-dock-btn--active' : ''}`}
         disabled={disabled}
-        onClick={onSave}
+        pressed={saveDrawerMode === 'save'}
+        onClick={onOpenSave}
       >
         <SaveIcon />
       </DockButton>
 
       <DockButton
-        label="Load saved game"
-        className="tamagotchi-dock-btn tamagotchi-dock-btn--load"
-        disabled={disabled || !hasSaveSlot}
-        onClick={onLoad}
+        label="Load game"
+        className={`tamagotchi-dock-btn tamagotchi-dock-btn--load${saveDrawerMode === 'load' ? ' tamagotchi-dock-btn--active' : ''}`}
+        disabled={disabled || !hasAnySaveSlot}
+        pressed={saveDrawerMode === 'load'}
+        onClick={onOpenLoad}
       >
         <LoadIcon />
       </DockButton>

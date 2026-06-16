@@ -13,6 +13,7 @@ import TamagotchiShellControls from './TamagotchiShellControls';
 import TamagotchiPanelControls from './TamagotchiPanelControls';
 
 import TamagotchiSkinDrawer from './TamagotchiSkinDrawer';
+import TamagotchiSaveDrawer from './TamagotchiSaveDrawer';
 import TamagotchiHints from './TamagotchiHints';
 import { tamagotchiAudio, primeTamagotchiAudio } from '../tamagotchi/audio';
 
@@ -69,10 +70,11 @@ export default function TamagotchiWidget() {
   const [open, setOpen] = useState(false);
 
   const [skinsOpen, setSkinsOpen] = useState(false);
+  const [saveDrawerMode, setSaveDrawerMode] = useState(null); // null | 'save' | 'load'
 
   const { skin, skinId, setSkinId, skins } = useTamagotchiSkin();
 
-  const { screenRef, status, error, config, sendButton, tapButton, resetGame, togglePause, saveSlot, loadSlot, hasSaveSlot, isPaused } =
+  const { screenRef, status, error, config, sendButton, tapButton, resetGame, togglePause, saveSlot, loadSlot, slotsInfo, isPaused } =
 
     useTamagotchiEmulator(open);
 
@@ -80,12 +82,12 @@ export default function TamagotchiWidget() {
 
   const faceUrl = skin.shellUrl;
 
-
+  const hasAnySaveSlot = slotsInfo.some((s) => s.hasData);
 
   const close = useCallback(() => {
 
     setSkinsOpen(false);
-
+    setSaveDrawerMode(null);
     setOpen(false);
 
   }, []);
@@ -118,7 +120,25 @@ export default function TamagotchiWidget() {
     }
   }, [isPaused]);
 
+  const handleOpenSave = useCallback(() => {
+    setSkinsOpen(false);
+    setSaveDrawerMode((m) => (m === 'save' ? null : 'save'));
+  }, []);
 
+  const handleOpenLoad = useCallback(() => {
+    setSkinsOpen(false);
+    setSaveDrawerMode((m) => (m === 'load' ? null : 'load'));
+  }, []);
+
+  const handleSaveToSlot = useCallback((slotIndex) => {
+    saveSlot(slotIndex);
+    setSaveDrawerMode(null);
+  }, [saveSlot]);
+
+  const handleLoadFromSlot = useCallback((slotIndex) => {
+    loadSlot(slotIndex);
+    setSaveDrawerMode(null);
+  }, [loadSlot]);
 
   const pressButton = useCallback(
 
@@ -194,6 +214,11 @@ export default function TamagotchiWidget() {
     const handleKeyDown = (event) => {
 
       if (event.key === 'Escape') {
+
+        if (saveDrawerMode) {
+          setSaveDrawerMode(null);
+          return;
+        }
 
         if (skinsOpen) {
 
@@ -271,7 +296,7 @@ export default function TamagotchiWidget() {
 
     };
 
-  }, [open, close, tapButton, status, isPaused, config, skinsOpen]);
+  }, [open, close, tapButton, status, isPaused, config, skinsOpen, saveDrawerMode]);
 
 
 
@@ -292,7 +317,7 @@ export default function TamagotchiWidget() {
         ? createPortal(
 
             <div
-              className={`art-lightbox tamagotchi-lightbox${skinsOpen ? ' tamagotchi-lightbox--skins-open' : ''}`}
+              className={`art-lightbox tamagotchi-lightbox${skinsOpen ? ' tamagotchi-lightbox--skins-open' : ''}${saveDrawerMode ? ' tamagotchi-lightbox--saves-open' : ''}`}
               onClick={close}
 
               role="dialog"
@@ -303,7 +328,7 @@ export default function TamagotchiWidget() {
 
             >
 
-              {!skinsOpen ? <LightboxCloseButton onClose={close} label="Close Tamagotchi" /> : null}
+              {!skinsOpen && !saveDrawerMode ? <LightboxCloseButton onClose={close} label="Close Tamagotchi" /> : null}
 
 
 
@@ -392,12 +417,16 @@ export default function TamagotchiWidget() {
                     pauseDisabled={!controlsReady}
                     isPaused={isPaused}
                     skinsOpen={skinsOpen}
-                    hasSaveSlot={hasSaveSlot}
+                    saveDrawerMode={saveDrawerMode}
+                    hasAnySaveSlot={hasAnySaveSlot}
                     onTogglePause={togglePause}
                     onNewGame={resetGame}
-                    onSave={saveSlot}
-                    onLoad={loadSlot}
-                    onToggleSkins={() => setSkinsOpen((current) => !current)}
+                    onOpenSave={handleOpenSave}
+                    onOpenLoad={handleOpenLoad}
+                    onToggleSkins={() => {
+                      setSaveDrawerMode(null);
+                      setSkinsOpen((current) => !current);
+                    }}
                   />
                 </div>
 
@@ -421,6 +450,15 @@ export default function TamagotchiWidget() {
 
                   onClose={() => setSkinsOpen(false)}
 
+                />
+
+                <TamagotchiSaveDrawer
+                  open={saveDrawerMode != null}
+                  mode={saveDrawerMode}
+                  slotsInfo={slotsInfo}
+                  onSave={handleSaveToSlot}
+                  onLoad={handleLoadFromSlot}
+                  onClose={() => setSaveDrawerMode(null)}
                 />
 
               </figure>
@@ -468,5 +506,3 @@ export default function TamagotchiWidget() {
   );
 
 }
-
-

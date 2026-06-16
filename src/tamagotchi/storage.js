@@ -1,7 +1,12 @@
 const DB_NAME = 'homepage-tamagotchi-v3';
 const STORE_NAME = 'states';
 const STATE_KEY = 'cpu';
-const SAVE_SLOT_KEY = 'save-slot';
+
+const SLOT_COUNT = 3;
+
+function slotKey(index) {
+  return `save-slot-${index}`;
+}
 
 function openDatabase() {
   return new Promise((resolve, reject) => {
@@ -43,12 +48,12 @@ export async function loadTamagotchiState() {
   return state;
 }
 
-export async function saveToSlot(state) {
+export async function saveToSlot(slotIndex, state) {
   const db = await openDatabase();
 
   await new Promise((resolve, reject) => {
     const transaction = db.transaction(STORE_NAME, 'readwrite');
-    transaction.objectStore(STORE_NAME).put(state, SAVE_SLOT_KEY);
+    transaction.objectStore(STORE_NAME).put({ state, savedAt: Date.now() }, slotKey(slotIndex));
     transaction.oncomplete = () => resolve();
     transaction.onerror = () => reject(transaction.error ?? new Error('IndexedDB write failed'));
   });
@@ -56,18 +61,41 @@ export async function saveToSlot(state) {
   db.close();
 }
 
-export async function loadFromSlot() {
+export async function loadFromSlot(slotIndex) {
   const db = await openDatabase();
 
-  const state = await new Promise((resolve, reject) => {
+  const record = await new Promise((resolve, reject) => {
     const transaction = db.transaction(STORE_NAME, 'readonly');
-    const request = transaction.objectStore(STORE_NAME).get(SAVE_SLOT_KEY);
+    const request = transaction.objectStore(STORE_NAME).get(slotKey(slotIndex));
     request.onsuccess = () => resolve(request.result ?? null);
     request.onerror = () => reject(request.error ?? new Error('IndexedDB read failed'));
   });
 
   db.close();
-  return state;
+  return record; // { state, savedAt } | null
+}
+
+export async function getSlotsInfo() {
+  const db = await openDatabase();
+
+  const records = await Promise.all(
+    Array.from({ length: SLOT_COUNT }, (_, i) =>
+      new Promise((resolve, reject) => {
+        const tx = db.transaction(STORE_NAME, 'readonly');
+        const req = tx.objectStore(STORE_NAME).get(slotKey(i + 1));
+        req.onsuccess = () => resolve(req.result ?? null);
+        req.onerror = () => reject(req.error ?? new Error('IndexedDB read failed'));
+      }),
+    ),
+  );
+
+  db.close();
+
+  return records.map((record, i) => ({
+    index: i + 1,
+    hasData: record != null,
+    savedAt: record?.savedAt ?? null,
+  }));
 }
 
 export async function clearTamagotchiState() {

@@ -1,11 +1,24 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { loadP1BrickConfig } from '../tamagotchi/brickConfig';
-import { clearTamagotchiState, loadTamagotchiState, saveTamagotchiState, saveToSlot, loadFromSlot } from '../tamagotchi/storage';
+import {
+  clearTamagotchiState,
+  getSlotsInfo,
+  loadFromSlot,
+  loadTamagotchiState,
+  saveTamagotchiState,
+  saveToSlot,
+} from '../tamagotchi/storage';
 import { LIB_BASE_URL, WORKER_URL } from '../tamagotchi/paths';
 import { VRAM_SIZE } from '../tamagotchi/vram';
 import { handleTamagotchiBeep, handleTamagotchiSoundStop, tamagotchiAudio } from '../tamagotchi/audio';
 
 const AUTOSAVE_MS = 30000;
+
+const EMPTY_SLOTS = [
+  { index: 1, hasData: false, savedAt: null },
+  { index: 2, hasData: false, savedAt: null },
+  { index: 3, hasData: false, savedAt: null },
+];
 
 export function useTamagotchiEmulator(active) {
   const workerRef = useRef(null);
@@ -18,10 +31,10 @@ export function useTamagotchiEmulator(active) {
   const [pauseWanted, setPauseWanted] = useState(
     () => localStorage.getItem('tamagotchi-paused') === 'true',
   );
-  const [hasSaveSlot, setHasSaveSlot] = useState(false);
+  const [slotsInfo, setSlotsInfo] = useState(EMPTY_SLOTS);
   const skipSavedRef = useRef(false);
   const pauseWantedRef = useRef(false);
-  const pendingSaveSlotRef = useRef(false);
+  const pendingSaveSlotRef = useRef(null); // null | 1 | 2 | 3
 
   useEffect(() => {
     pauseWantedRef.current = pauseWanted;
@@ -29,7 +42,7 @@ export function useTamagotchiEmulator(active) {
   }, [pauseWanted]);
 
   useEffect(() => {
-    loadFromSlot().then((s) => setHasSaveSlot(s != null)).catch(() => {});
+    getSlotsInfo().then(setSlotsInfo).catch(() => {});
   }, []);
 
   const sendButton = useCallback((button, pressed) => {
@@ -51,20 +64,6 @@ export function useTamagotchiEmulator(active) {
     setSessionKey((key) => key + 1);
   }, []);
 
-  const saveSlot = useCallback(() => {
-    if (!workerRef.current) return;
-    pendingSaveSlotRef.current = true;
-    workerRef.current.postMessage({ type: 'save' });
-  }, []);
-
-  const loadSlot = useCallback(async () => {
-    const slotState = await loadFromSlot();
-    if (!slotState) return;
-    await saveTamagotchiState(slotState);
-    skipSavedRef.current = false;
-    setSessionKey((key) => key + 1);
-  }, []);
-
   const togglePause = useCallback(() => {
     if (!workerRef.current) {
       return;
@@ -74,6 +73,20 @@ export function useTamagotchiEmulator(active) {
       type: pauseWanted ? 'resume' : 'pause',
     });
   }, [pauseWanted]);
+
+  const saveSlot = useCallback((slotIndex) => {
+    if (!workerRef.current) return;
+    pendingSaveSlotRef.current = slotIndex;
+    workerRef.current.postMessage({ type: 'save' });
+  }, []);
+
+  const loadSlot = useCallback(async (slotIndex) => {
+    const record = await loadFromSlot(slotIndex);
+    if (!record) return;
+    await saveTamagotchiState(record.state);
+    skipSavedRef.current = false;
+    setSessionKey((key) => key + 1);
+  }, []);
 
   useEffect(() => {
     if (!active) {
@@ -180,10 +193,12 @@ export function useTamagotchiEmulator(active) {
 
         if (type === 'state') {
           saveTamagotchiState(event.data.state).catch(() => {});
-          if (pendingSaveSlotRef.current) {
-            pendingSaveSlotRef.current = false;
-            saveToSlot(event.data.state)
-              .then(() => setHasSaveSlot(true))
+          const slotIndex = pendingSaveSlotRef.current;
+          if (slotIndex != null) {
+            pendingSaveSlotRef.current = null;
+            saveToSlot(slotIndex, event.data.state)
+              .then(() => getSlotsInfo())
+              .then(setSlotsInfo)
               .catch(() => {});
           }
           return;
@@ -252,7 +267,7 @@ export function useTamagotchiEmulator(active) {
     togglePause,
     saveSlot,
     loadSlot,
-    hasSaveSlot,
+    slotsInfo,
     isPaused: pauseWanted || status === 'paused',
   };
 }
