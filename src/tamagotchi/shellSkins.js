@@ -35,6 +35,21 @@ export const TAMAGOTCHI_SHELL_SKINS = [
       },
     },
   },
+  {
+    id: 'tropical',
+    name: 'Tropical',
+    description: 'Tropical pattern shell',
+    shellUrl: tamagotchiUrl('assets/skins/TamagotchiP1-shell-tropical.svg'),
+    previewUrl: tamagotchiUrl('assets/skins/TamagotchiP1-shell-tropical.svg'),
+    layout: {
+      screen: pctRect(173.875, 264.174, 348, 329),
+      buttons: {
+        A: pctRect(214.426, 709.177, 52, 52),
+        B: pctRect(322.378, 735.765, 52, 52),
+        C: pctRect(432.426, 709.177, 52, 52),
+      },
+    },
+  },
 ];
 
 export const DEFAULT_SHELL_SKIN_ID = TAMAGOTCHI_SHELL_SKINS[0].id;
