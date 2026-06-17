@@ -22,6 +22,12 @@ let wallAnchorMs = 0;
 let buzzerEnabled = false;
 let buzzerFrequencyHz = 0;
 
+let ffMode = false;
+let ffTargetUs = 0;
+let ffStartUs = 0;
+let ffWasPaused = false;
+let ffTimer = null;
+
 function postBuzzerBeep() {
   if (buzzerEnabled && buzzerFrequencyHz > 0) {
     self.postMessage({ type: 'beep', frequency: buzzerFrequencyHz });
@@ -67,6 +73,7 @@ const hal = {
   },
   get_timestamp: () => emuTimeUs,
   update_screen: () => {
+    if (ffMode) return;
     const snapshot = tamalib_export_display_vram();
     vramOut.set(snapshot);
     self.postMessage({ type: 'frame', vram: vramOut }, [vramOut.buffer]);
@@ -79,10 +86,12 @@ const hal = {
     icons[icon] = val;
   },
   set_frequency: (freq) => {
+    if (ffMode) return;
     buzzerFrequencyHz = freq / 10;
     postBuzzerBeep();
   },
   play_frequency: (play) => {
+    if (ffMode) return;
     buzzerEnabled = !!play;
     if (buzzerEnabled) {
       postBuzzerBeep();
@@ -91,6 +100,7 @@ const hal = {
     postBuzzerStop();
   },
   trigger_one_shot: (longPulse) => {
+    if (ffMode) return;
     const frequency = buzzerFrequencyHz > 0 ? buzzerFrequencyHz : 4096;
     self.postMessage({
       type: 'beep',
@@ -99,6 +109,7 @@ const hal = {
     });
   },
   set_envelope: (enabled) => {
+    if (ffMode) return;
     if (!enabled) {
       postBuzzerStop();
     }
@@ -171,6 +182,41 @@ function stopLoop() {
   if (screenTimer != null) {
     clearTimeout(screenTimer);
     screenTimer = null;
+  }
+}
+
+function fastForwardBatch() {
+  if (!ffMode || !engineReady) return;
+
+  const BATCH_STEPS = 300000;
+  let steps = 0;
+
+  while (emuTimeUs < ffTargetUs && steps < BATCH_STEPS) {
+    tamalib_step();
+    steps += 1;
+  }
+
+  const elapsed = emuTimeUs - ffStartUs;
+  const total = ffTargetUs - ffStartUs;
+  const progress = total > 0 ? Math.min(1, elapsed / total) : 1;
+  self.postMessage({ type: 'ffProgress', progress });
+
+  if (emuTimeUs >= ffTargetUs) {
+    ffMode = false;
+    syncWallAnchor();
+    if (!ffWasPaused) {
+      tamalib_set_exec_mode(exec_mode_t.EXEC_MODE_RUN);
+    }
+    self.postMessage({ type: 'ffDone' });
+    if (!ffWasPaused) {
+      startLoop();
+    } else {
+      loopPaused = true;
+      tamalib_set_exec_mode(exec_mode_t.EXEC_MODE_PAUSE);
+      self.postMessage({ type: 'paused' });
+    }
+  } else {
+    ffTimer = setTimeout(fastForwardBatch, 0);
   }
 }
 
@@ -305,7 +351,43 @@ self.onmessage = (event) => {
   }
 
   if (type === 'stop') {
+    if (ffTimer) { clearTimeout(ffTimer); ffTimer = null; }
+    ffMode = false;
     stopLoop();
     engineReady = false;
+  }
+
+  if (type === 'fastForward') {
+    if (!engineReady) return;
+    const { hours, minutes } = event.data;
+    const skipUs = (hours * 3600 + minutes * 60) * 1000000;
+    if (skipUs <= 0) return;
+
+    if (ffTimer) { clearTimeout(ffTimer); ffTimer = null; }
+    stopLoop();
+
+    ffMode = true;
+    ffWasPaused = loopPaused;
+    ffStartUs = emuTimeUs;
+    ffTargetUs = emuTimeUs + skipUs;
+
+    tamalib_set_exec_mode(exec_mode_t.EXEC_MODE_RUN);
+    fastForwardBatch();
+  }
+
+  if (type === 'cancelFf') {
+    if (ffTimer) { clearTimeout(ffTimer); ffTimer = null; }
+    ffMode = false;
+    syncWallAnchor();
+    self.postMessage({ type: 'ffDone' });
+    if (!ffWasPaused) {
+      loopPaused = false;
+      tamalib_set_exec_mode(exec_mode_t.EXEC_MODE_RUN);
+      startLoop();
+    } else {
+      loopPaused = true;
+      tamalib_set_exec_mode(exec_mode_t.EXEC_MODE_PAUSE);
+      self.postMessage({ type: 'paused' });
+    }
   }
 };

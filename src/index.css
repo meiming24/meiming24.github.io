@@ -2325,6 +2325,260 @@ body {
     0 10px 24px rgb(0 0 0 / 32%);
 }
 
+.tamagotchi-dock-btn--ff {
+  background:
+    linear-gradient(145deg, rgb(251 146 60 / 32%), rgb(234 88 12 / 46%)),
+    rgb(15 23 42 / 55%);
+  border-color: rgb(253 186 116 / 32%);
+}
+
+.tamagotchi-dock-btn--ff.tamagotchi-dock-btn--active {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 14%),
+    0 0 0 1px rgb(253 186 116 / 32%),
+    0 10px 24px rgb(0 0 0 / 32%);
+}
+
+/* Fast forward drawer */
+
+.tamagotchi-ff-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1003;
+  display: flex;
+  flex-direction: column;
+  width: min(22rem, 92vw);
+  height: 100%;
+  padding: 1.75rem 1.5rem 2rem;
+  background: rgb(10 14 28 / 94%);
+  backdrop-filter: blur(20px);
+  border-left: 1px solid rgb(251 146 60 / 15%);
+  color: rgb(248 250 252);
+  font-family: Montserrat, sans-serif;
+  overflow: hidden;
+  box-sizing: border-box;
+  transform: translateX(100%);
+  transition: transform 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.tamagotchi-ff-drawer--open {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.tamagotchi-ff-drawer__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.tamagotchi-ff-drawer__eyebrow {
+  margin: 0 0 0.2rem;
+  color: rgb(253 186 116 / 72%);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tamagotchi-ff-drawer__title {
+  margin: 0;
+  color: rgb(248 250 252);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+
+.tamagotchi-ff-drawer__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: 50%;
+  background: rgb(255 255 255 / 6%);
+  color: rgb(248 250 252);
+  cursor: pointer;
+}
+
+.tamagotchi-ff-drawer__close svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.tamagotchi-ff-form__desc {
+  margin: 0 0 1.25rem;
+  color: rgb(255 255 255 / 56%);
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+
+.tamagotchi-ff-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin-bottom: 1.35rem;
+}
+
+.tamagotchi-ff-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.tamagotchi-ff-field__label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  color: rgb(255 255 255 / 80%);
+  font-family: Montserrat, sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.tamagotchi-ff-field__hint {
+  color: rgb(255 255 255 / 30%);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+.tamagotchi-ff-field__input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid rgb(251 146 60 / 25%);
+  border-radius: 0.75rem;
+  background: rgb(255 255 255 / 4%);
+  color: rgb(248 250 252);
+  font-family: Montserrat, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.02em;
+  transition:
+    border-color 0.18s ease,
+    background 0.18s ease;
+  appearance: textfield;
+  -moz-appearance: textfield;
+}
+
+.tamagotchi-ff-field__input::-webkit-outer-spin-button,
+.tamagotchi-ff-field__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.tamagotchi-ff-field__input:focus {
+  outline: none;
+  border-color: rgb(251 146 60 / 70%);
+  background: rgb(251 146 60 / 5%);
+}
+
+.tamagotchi-ff-field__input::placeholder {
+  color: rgb(255 255 255 / 18%);
+  font-weight: 400;
+}
+
+.tamagotchi-ff-submit {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  border: 1px solid rgb(251 146 60 / 40%);
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgb(251 146 60 / 28%), rgb(234 88 12 / 40%));
+  color: rgb(253 186 116);
+  font-family: Montserrat, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    transform 0.14s ease;
+}
+
+.tamagotchi-ff-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgb(251 146 60 / 40%), rgb(234 88 12 / 55%));
+  border-color: rgb(251 146 60 / 60%);
+  transform: translateY(-1px);
+}
+
+.tamagotchi-ff-submit:disabled {
+  opacity: 0.38;
+  cursor: default;
+}
+
+.tamagotchi-ff-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  padding-top: 0.5rem;
+}
+
+.tamagotchi-ff-progress__label {
+  margin: 0;
+  color: rgb(253 186 116 / 80%);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.tamagotchi-ff-progress__track {
+  width: 100%;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 10%);
+  overflow: hidden;
+}
+
+.tamagotchi-ff-progress__fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgb(251 146 60), rgb(234 88 12));
+  transition: width 0.2s ease;
+}
+
+.tamagotchi-ff-progress__pct {
+  margin: 0;
+  color: rgb(248 250 252);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.tamagotchi-ff-cancel {
+  margin-top: 0.35rem;
+  padding: 0.45rem 1.1rem;
+  border: 1px solid rgb(255 255 255 / 16%);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 6%);
+  color: rgb(255 255 255 / 64%);
+  font-family: Montserrat, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.tamagotchi-ff-cancel:hover {
+  background: rgb(255 255 255 / 12%);
+  color: rgb(255 255 255 / 90%);
+}
+
 .tamagotchi-control-bar {
   display: grid;
   grid-template-columns: 1fr 1fr;

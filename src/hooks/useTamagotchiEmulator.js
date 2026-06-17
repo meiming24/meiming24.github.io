@@ -28,6 +28,8 @@ export function useTamagotchiEmulator(active) {
   const [error, setError] = useState('');
   const [config, setConfig] = useState(null);
   const [sessionKey, setSessionKey] = useState(0);
+  const [fastForwarding, setFastForwarding] = useState(false);
+  const [ffProgress, setFfProgress] = useState(0);
   const [pauseWanted, setPauseWanted] = useState(
     () => localStorage.getItem('tamagotchi-paused') === 'true',
   );
@@ -78,6 +80,18 @@ export function useTamagotchiEmulator(active) {
     if (!workerRef.current) return;
     pendingSaveSlotRef.current = slotIndex;
     workerRef.current.postMessage({ type: 'save' });
+  }, []);
+
+  const fastForward = useCallback((hours, minutes) => {
+    if (!workerRef.current) return;
+    setFastForwarding(true);
+    setFfProgress(0);
+    workerRef.current.postMessage({ type: 'fastForward', hours, minutes });
+  }, []);
+
+  const cancelFastForward = useCallback(() => {
+    if (!workerRef.current) return;
+    workerRef.current.postMessage({ type: 'cancelFf' });
   }, []);
 
   const loadSlot = useCallback(async (slotIndex) => {
@@ -204,6 +218,17 @@ export function useTamagotchiEmulator(active) {
           return;
         }
 
+        if (type === 'ffProgress') {
+          setFfProgress(event.data.progress);
+          return;
+        }
+
+        if (type === 'ffDone') {
+          setFastForwarding(false);
+          setFfProgress(0);
+          return;
+        }
+
         if (type === 'beep') {
           handleTamagotchiBeep(event.data.frequency, event.data.durationMs);
           return;
@@ -268,6 +293,10 @@ export function useTamagotchiEmulator(active) {
     saveSlot,
     loadSlot,
     slotsInfo,
+    fastForward,
+    cancelFastForward,
+    fastForwarding,
+    ffProgress,
     isPaused: pauseWanted || status === 'paused',
   };
 }

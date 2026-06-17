@@ -48,6 +48,15 @@ function LoadIcon() {
   );
 }
 
+function FastForwardIcon() {
+  return (
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M4 5.5v13l7.5-6.5z" />
+      <path d="M12.5 5.5v13L20 12z" />
+    </svg>
+  );
+}
+
 function ShellSkinIcon() {
   return (
     <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.55">
@@ -93,11 +102,13 @@ export default function TamagotchiPanelControls({
   skinsOpen,
   saveDrawerMode,
   hasAnySaveSlot,
+  ffDrawerOpen,
   onTogglePause,
   onNewGame,
   onOpenSave,
   onOpenLoad,
   onToggleSkins,
+  onToggleFf,
 }) {
   return (
     <div className="tamagotchi-dock">
@@ -138,6 +149,16 @@ export default function TamagotchiPanelControls({
         onClick={onNewGame}
       >
         <NewGameIcon />
+      </DockButton>
+
+      <DockButton
+        label="Fast forward time"
+        className={`tamagotchi-dock-btn tamagotchi-dock-btn--ff${ffDrawerOpen ? ' tamagotchi-dock-btn--active' : ''}`}
+        disabled={disabled}
+        pressed={ffDrawerOpen}
+        onClick={onToggleFf}
+      >
+        <FastForwardIcon />
       </DockButton>
 
       <DockButton
