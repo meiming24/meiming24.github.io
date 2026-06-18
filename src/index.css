@@ -3390,10 +3390,16 @@ body {
 
 /* ── Mobile ──────────────────────────────────────────────── */
 @media (max-width: 640px) {
+  /* Hide the today panel — it blocks content when open on small screens */
+  .today-panel-shell {
+    display: none;
+  }
+
   .search-container {
     padding-left: 1rem;
     padding-right: 1rem;
-    padding-top: 0.75rem;
+    /* push content below the fixed top-chrome (~3.5rem tall + 0.65rem offset) */
+    padding-top: 4.5rem;
   }
 
   .app-container {

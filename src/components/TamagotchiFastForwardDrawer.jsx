@@ -84,10 +84,14 @@ export default function TamagotchiFastForwardDrawer({
                 <span className="tamagotchi-ff-field__label">Hours <span className="tamagotchi-ff-field__hint">0 – 23</span></span>
                 <input
                   className="tamagotchi-ff-field__input"
+                  type="number"
                   inputMode="numeric"
+                  min="0"
+                  max="23"
                   value={hours}
                   onChange={handleHours}
                   onBlur={handleBlurHours}
+                  onFocus={(e) => e.target.select()}
                   placeholder="0"
                 />
               </label>
@@ -95,10 +99,14 @@ export default function TamagotchiFastForwardDrawer({
                 <span className="tamagotchi-ff-field__label">Minutes <span className="tamagotchi-ff-field__hint">0 – 59</span></span>
                 <input
                   className="tamagotchi-ff-field__input"
+                  type="number"
                   inputMode="numeric"
+                  min="0"
+                  max="59"
                   value={minutes}
                   onChange={handleMinutes}
                   onBlur={handleBlurMinutes}
+                  onFocus={(e) => e.target.select()}
                   placeholder="0"
                 />
               </label>
